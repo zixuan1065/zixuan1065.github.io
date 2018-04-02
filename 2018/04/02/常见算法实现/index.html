@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | 龙子轩的小鱼儿</title>
+  <title>常见算法实现 | 龙子轩的小鱼儿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="程序员 java 前端 算法 大数据">
-<meta property="og:type" content="website">
-<meta property="og:title" content="龙子轩的小鱼儿">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="前言算法对于程序员来说，就像意境对于音乐一般，缺少了灵魂，自然达不到很高的境界。下面是一些常用的算法的实现过程，略简陋。 一、排序算法直接（简单）选择排序可以说是最烂的排序算法，其最好情况也是O(n2)，以下为其实现过程：">
+<meta name="keywords" content="algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见算法实现">
+<meta property="og:url" content="http://yoursite.com/2018/04/02/常见算法实现/index.html">
 <meta property="og:site_name" content="龙子轩的小鱼儿">
-<meta property="og:description" content="程序员 java 前端 算法 大数据">
+<meta property="og:description" content="前言算法对于程序员来说，就像意境对于音乐一般，缺少了灵魂，自然达不到很高的境界。下面是一些常用的算法的实现过程，略简陋。 一、排序算法直接（简单）选择排序可以说是最烂的排序算法，其最好情况也是O(n2)，以下为其实现过程：">
+<meta property="og:updated_time" content="2018-04-02T07:31:46.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="龙子轩的小鱼儿">
-<meta name="twitter:description" content="程序员 java 前端 算法 大数据">
+<meta name="twitter:title" content="常见算法实现">
+<meta name="twitter:description" content="前言算法对于程序员来说，就像意境对于音乐一般，缺少了灵魂，自然达不到很高的境界。下面是一些常用的算法的实现过程，略简陋。 一、排序算法直接（简单）选择排序可以说是最烂的排序算法，其最好情况也是O(n2)，以下为其实现过程：">
   
     <link rel="alternative" href="/atom.xml" title="龙子轩的小鱼儿" type="application/atom+xml">
   
@@ -160,36 +162,190 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-常见算法实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/02/常见算法实现/" class="archive-article-date">
-  	<time datetime="2018-04-02T03:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/02/常见算法实现/">常见算法实现</a>
+    <h1 class="article-title" itemprop="name">
+      常见算法实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/04/02/常见算法实现/" class="archive-article-date">
+  	<time datetime="2018-04-02T03:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><h3>前言</h3>算法对于程序员来说，就像意境对于音乐一般，缺少了灵魂，自然达不到很高的境界。下面是一些常用的算法的实现过程，略简陋。<p></p>
+<p></p><h3>一、排序算法</h3><b>直接（简单）选择排序</b><p>可以说是最烂的排序算法，其最好情况也是O(n<sup>2</sup>)，以下为其实现过程：</p>
+<a id="more"></a>
+<pre><code>public static void SimpleSelectionSort(int[] arr){
+    for(int i=0;i&lt;arr.length;i++){
+        int min = i;
+        //finally find the minimum key
+        for(int j=i+1;j&lt;arr.length;j++){
+            if(arr[j] &lt; arr[min]){
+                min = j;
+            }
+        }
+        //exchange
+        if(min != i){
+            int temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = arr[temp];    
+        }
+    }
+}
+</code></pre><p></p><br><b>直接插入排序</b><p>其时间复杂度在最好情况下为O(n)，以下为其实现过程：</p>
+<pre><code>public static void InsertSort(int[] arr){
+    if(arr.length == 0 || arr == null)
+        return;
+
+    for(int i=0;i&lt;arr.length;i++){
+        int j = i;
+        int target = arr[i];
+
+        while(j &gt; 0 &amp;&amp; target &lt; arr[j-1]){
+            arr[j] = arr[j-1];
+            j--;
+        }
+
+        arr[j] = target;
+    }
+}
+</code></pre><p></p><br><b>冒泡排序</b><p>该算法最好情况下时间复杂度为O(n)，以下为其实现过程：</p>
+<pre><code>//方式一(每轮确定最小)
+public static void BubbleSort(int[] arr){
+    for(int i=0;i&lt;arr.length;i++){
+        for(int j=i+1;j&lt;arr.length;j++){
+            if(arr[j] &lt; arr[i]){
+                arr[j] ^= arr[i];
+                arr[i] ^= arr[j];
+                arr[j] ^= arr[i];
+            }
+        }    
+    }
+}
+
+//方式二(每轮确定最大)
+public static void BubbleSort2(int[] arr){
+    Boolean flag = true;
+    for(int i=0;i&lt;arr.length - 1 &amp;&amp; flag;i++){
+        flag = false;
+        for(int j=0;j&lt;arr.length - 1 - i;j++){
+            if(arr[j] &gt; arr[j+1]){
+                int temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+
+                flag = true;
+            }
+        }
+    }
+}
+</code></pre><p></p><br><b>快速排序</b><p>该算法号称最快，当然最坏情况也会达到O(n<sup>2</sup>)，其最好情况下为O(nlog<sub>2</sub>n)，其实现过程如下：</p>
+<pre><code>public static void quickSort(int[] arr,int left,int right){
+    //声明左右指针及基准数
+    int i,j,pviot;
+    if(left &gt;= right)
+        return;
+    //选取分组最左端为基准数（关于基准数的选取不做深入了解）
+    pviot = arr[left];
+    i = left;
+    j = right;
+
+    while(i &lt; j){
+        //右起找比pviot小的
+        while(arr[j] &gt;= pviot &amp;&amp; i &lt; j)
+            j--;
+        //左起找比pviot大的
+        while(arr[i] &lt;= pviot &amp;&amp; i &lt; j)
+            i++;
+        //交换
+        if(i &lt; j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    //基准数归位
+    arr[left] = arr[i];
+    arr[i] = pviot;
+    //递归分组排序
+    quickSort(arr, left, i-1);
+    quickSort(arr, i+1, right);
+}
+</code></pre><p>快速排序还有好几种对其优化后的版本，例如三切分快速排序等（优化待排数据中有大量重复数据出现），后续进行列出。<br></p><br><b>希尔排序</b><p>希尔排序其实是更为高效的插入排序，最好情况下可以为O(n)，以下为其实现过程：</p>
+<pre><code>//方法一：交换法
+public static void shell(int[] arr){
+    for(int gap = arr.length/2;gap &gt; 0;gap /= 2){
+        for(int i = gap;i&lt;arr.length;i++){
+            int j = i;
+            while(j-gap &gt; 0 &amp;&amp; arr[j] &lt; arr[j-gap]){
+                int temp = arr[j];
+                arr[j] = arr[j-gap];
+                arr[j-gap] = temp;
+
+                j-=gap;
+            }
+        }
+    }
+}
+
+//方法二：移动法
+public static void shell(int[] arr){
+    for(int gap = arr.length/2;gap &gt; 0;gap/=2){
+        for(int i=gap;i&lt;arr.length;i++){
+            int j = i;
+            int target = arr[j];
+            if(arr[j] &lt; arr[j-gap]){
+                while(j-gap&gt;0 &amp;&amp; target &lt; arr[j-gap]){
+                    arr[j] = arr[j-gap];
+                    j-=gap;
+                }
+
+                arr[j] = target;
+            }
+        }
+    }
+}
+</code></pre><p></p><p></p>
+<p>未完待续。。。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬赞助<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,171 +357,117 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/02/常见算法实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/13/JavaEE相关知识总结（复习）/" class="archive-article-date">
-  	<time datetime="2018-03-13T08:02:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/13/JavaEE相关知识总结（复习）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaEE相关知识总结（复习）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/13/JavaEE相关知识总结（复习）/">JavaEE相关知识总结（复习）</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2018/04/02/常见算法实现/", 
+    sourceId: "常见算法实现",
+    productKey: "true属性，才有目录；",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/22/我的游戏生涯/" class="archive-article-date">
-  	<time datetime="2018-02-22T06:18:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/22/我的游戏生涯/">我的游戏生涯</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游戏</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/22/2018-新的开始/" class="archive-article-date">
-  	<time datetime="2018-02-22T03:13:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/22/2018-新的开始/">2018 新的开始</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/20/冬牧场新篇/" class="archive-article-date">
-  	<time datetime="2018-02-20T06:26:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/20/冬牧场新篇/">冬牧场新篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">long</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -388,8 +490,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
